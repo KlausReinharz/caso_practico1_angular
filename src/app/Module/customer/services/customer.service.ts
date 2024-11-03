@@ -14,4 +14,8 @@ export class CustomerService {
   postCustomer(customerDto:any):Observable<any>{
     return this.http.post(BASIC_URL +"person/save", customerDto);
   }
+
+  getCustomer():Observable<any>{
+    return this.http.get(BASIC_URL + "person/getAll")
+  }
 }

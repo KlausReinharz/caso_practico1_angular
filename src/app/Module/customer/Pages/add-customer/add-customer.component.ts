@@ -5,6 +5,7 @@ import { CustomerService } from '../../services/customer.service';
 import { AnimationDurations } from '@angular/material/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-customer',
@@ -13,12 +14,15 @@ import { Router } from '@angular/router';
 })
 export class AddCustomerComponent {
 
+  loading: boolean = false;
+
   customForm!: FormGroup;
 
   constructor(private fb: FormBuilder,
     private customerService: CustomerService,
     private snackbar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private dialogRef: MatDialogRef<AddCustomerComponent>
   ){
     this.customForm=this.fb.group({
       name:[null, Validators.required],
@@ -27,7 +31,7 @@ export class AddCustomerComponent {
       dateOfBirth:[null,Validators.required ]
     })
   }
-
+  /*
   submitForm(){
     this.customerService.postCustomer(this.customForm.value).subscribe(data=>{
       console.log(data);
@@ -36,6 +40,28 @@ export class AddCustomerComponent {
     }, error=>{
       this.snackbar.open(`${error.error}`,'Close',{duration:5000})
     })
-  }
+  }*/
+
+    submitForm(){
+      this.loading = true;
+
+      this.customerService.postCustomer(this.customForm.value).subscribe({
+        next:(data)=>{
+          this.loading=false;
+          this.dialogRef.close();
+          console.log(data);
+
+          this.snackbar.open("Customer Client Posted Successfuly", 'Close', {duration:5000});
+
+        },error:()=>{
+          this.snackbar.open(`Error ingress data`,'Close',{duration:5000})
+          this.loading=false;
+        }
+      })
+    }
+
+    cancel(){
+      this.dialogRef.close();
+    }
 
 }
