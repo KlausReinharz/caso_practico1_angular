@@ -18,6 +18,7 @@ export class CustomerService {
   getCustomer():Observable<any>{
     return this.http.get(BASIC_URL + "person/getAll")
   }
+<<<<<<< HEAD
 
   getCustomerById(id:number):Observable<any>{
     return this.http.get(BASIC_URL + `person/get/${id}`)
@@ -30,4 +31,6 @@ export class CustomerService {
   deleteCustomer(id: number):Observable<any>{
     return this.http.delete(BASIC_URL +`person/delete/${id}`)
   }
+=======
+>>>>>>> abebe125755d06dd37e832f601747925adb81dbc
 }

@@ -2,7 +2,7 @@
 <mat-toolbar>
     <span>Crud Application</span>
     <span class="example-spacer"></span>
-    <button mat-raised-button (click)="openEditCustomer()"
+    <button mat-raised-button (click)="openAddEditCustmFor()"
     >Add Custome</button>
 </mat-toolbar>
 
@@ -14,7 +14,6 @@
 
     <div class="mat-elevation-z8">
       <table mat-table [dataSource]="dataSource" matSort>
-
 
         <!-- Position Column -->
         <ng-container matColumnDef="id">
@@ -51,15 +50,18 @@
         </ng-container>
 
         <ng-container matColumnDef="action">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
-          <td mat-cell *matCellDef="let element">
-            <button mat-icon-button color="primary" (click)="openEditCustomer(element.id)">
-              <mat-icon>edit</mat-icon>
-            </button>
-            <button mat-icon-button color="warn" (click)="deleteCustomer(element.id)" >
-              <mat-icon>delete</mat-icon>
-            </button>
-          </td>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-icon-button color="primary">
+                <mat-icon>edit</mat-icon>
+              </button>
+
+              <button mat-icon-button color="warn">
+                <mat-icon>delete</mat-icon>
+              </button>
+
+            </td>
+
         </ng-container>
 
 
