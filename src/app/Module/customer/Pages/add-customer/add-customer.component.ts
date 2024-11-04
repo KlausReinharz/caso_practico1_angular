@@ -64,6 +64,7 @@ export class AddCustomerComponent {
               duration: 5000,
               panelClass: ['mat-snackbar_success']
             });
+            
           },
           error: () => {
             this.loading = false;
@@ -77,12 +78,14 @@ export class AddCustomerComponent {
         // Llama a la creación de nuevo cliente si no hay ID
         this.customerService.postCustomer(this.customForm.value).subscribe({
           next: (data) => {
+            console.log(data);
             this.loading = false;
             this.dialogRef.close(true);
             this.snackbar.open("Customer created successfully", 'Close', {
               duration: 5000,
               panelClass: ['mat-snackbar_success']
             });
+
           },
           error: () => {
             this.loading = false;
